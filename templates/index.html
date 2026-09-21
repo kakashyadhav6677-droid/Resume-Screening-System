@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='index_cs.css')}}">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="container">
+    <form method="POST" action="/">
+        <h2>Sign Up</h2>
+        <hr>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="role">Select Role:</label><br>
+        <input type="radio" id="employer" name="role" value="employer" required>
+        <label for="employer">Employer</label><br>
+        <input type="radio" id="employee" name="role" value="employee" required>
+        <label for="employee">Employee</label><br><br>
+        <input type="submit" id="sign-btn" value="Sign Up"><br>
+        <a href="{{ url_for('login') }}">Already have an account? Login</a>
+    </form>
+    </div>
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+</body>
+</html>

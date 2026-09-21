@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='create_profile.css') }}">
+  <title>Create Employer Profile</title>
+</head>
+<body>
+  <!--<form method="POST" action="/create_profile">
+    <h2>Create Your Profile</h2>
+    <div class="form-group">
+      <label for="company_name">Company Name:</label>
+      <input type="text" id="company_name" name="company_name" required>
+    </div>
+    <div class="form-group">
+      <label for="industry">Industry:</label>
+      <input type="text" id="industry" name="industry" required>
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+    </div>
+    <div class="form-group">
+      <label for="contact_email">Contact Email:</label>
+      <input type="email" id="contact_email" name="contact_email" required>
+    </div>
+    <div class="form-group">
+      <label for="contact_phone">Contact Phone:</label>
+      <input type="text" id="contact_phone" name="contact_phone" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="website">Website:</label>
+      <input type="url" id="website" name="website">
+    </div>
+    <div class="form-group">
+      <label for="company_description">Company Description:</label>
+      <textarea id="company_description" name="company_description" rows="4" required></textarea>
+    </div>
+    <input type="submit" value="Create Profile">
+  </form>-->
+  <form method="POST" action="/create_profile">
+    <label for="company_name">Company Name:</label><br>
+    <input type="text" id="company_name" name="company_name" value="{{ profile.company_name if profile else '' }}" required><br><br>
+
+    <label for="industry">Industry:</label><br>
+    <input type="text" id="industry" name="industry" value="{{ profile.industry if profile else '' }}" required><br><br>
+
+    <label for="location">Location:</label><br>
+    <input type="text" id="location" name="location" value="{{ profile.location if profile else '' }}" required><br><br>
+
+    <label for="contact_email">Contact Email:</label><br>
+    <input type="email" id="contact_email" name="contact_email" value="{{ profile.contact_email if profile else '' }}" required><br><br>
+
+    <label for="contact_phone">Contact Phone:</label><br>
+    <input type="text" id="contact_phone" name="contact_phone" value="{{ profile.contact_phone if profile else '' }}" required><br><br>
+
+    <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+    <label for="website">Website:</label><br>
+    <input type="text" id="website" name="website" value="{{ profile.website if profile else '' }}"><br><br>
+
+    <label for="company_description">Company Description:</label><br>
+    <textarea id="company_description" name="company_description" required>{{ profile.company_description if profile else '' }}</textarea><br><br>
+
+    {% if profile %}
+        <input type="submit" value="Update Profile">
+    {% else %}
+        <input type="submit" value="Create Profile">
+    {% endif %}
+</form>
+
+</body>
+</html>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ messgae }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}

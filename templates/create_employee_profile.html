@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='employee_profile.css') }}">
+    <title>Create Employee Profile</title>
+</head>
+<body>
+    <h1>{{ 'Edit Profile' if profile else 'Create Profile' }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name" 
+               value="{{ profile['full_name'] if profile else '' }}" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" 
+               value="{{ profile['location'] if profile else '' }}" required>
+
+        <label for="contact_email">Contact Email:</label>
+        <input type="email" id="contact_email" name="contact_email" 
+               value="{{ profile['contact_email'] if profile else '' }}" required>
+
+        <label for="contact_phone">Contact Phone:</label>
+        <input type="tel" id="contact_phone" name="contact_phone" 
+               value="{{ profile['contact_phone'] if profile else '' }}" required>
+
+        <label for="resume">Resume:</label>
+        <input type="file" id="resume" name="resume">
+
+        <label for="cover_letter">Cover Letter (optional):</label>
+        <textarea id="cover_letter" name="cover_letter">{{ profile['cover_letter'] if profile else '' }}</textarea>
+
+        <button type="submit">{{ 'Update Profile' if profile else 'Create Profile' }}</button>
+    </form>
+    
+</body>
+</html>

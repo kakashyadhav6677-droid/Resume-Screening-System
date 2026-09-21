@@ -1,0 +1,71 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='employer_dashboard.css') }}">
+  <title>Employer Dashboard</title>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome, {{ username }}!</h2>
+    <div class="nav-links">
+      <a href="{{ url_for('create_profile') }}">Create Profile</a>
+      <a href="{{ url_for('post_job') }}">Post a Job</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    <hr>
+    <h3>Your Posted Jobs</h3>
+    {% if jobs %}
+      <ul>
+        {% for job in jobs %}
+          <li>
+            <h4>{{ job.job_title }} - {{ job.date_posted }}</h4>
+            <p>{{ job.job_description }}</p>
+            <p><strong>Keywords:</strong> {{ job.keywords }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No jobs posted yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='employer_dashboard.css') }}">
+</head>
+<body>
+    <h1>Employer Dashboard</h1>
+    <nav>
+        <a href="/post_job">Post a Job</a>
+        <a href="/logout">Logout</a>
+        <a href="/create_profile">Profile</a>
+    </nav>
+
+    <h2>My Jobs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Applications</th>
+                <th>View Applications</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.application_count }}</td>
+                <td><a href="/job_applications/{{ job.id }}">View Applications</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

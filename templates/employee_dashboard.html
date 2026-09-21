@@ -1,0 +1,74 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ session['username'] }}!</h2>
+    <nav>
+        <a href="{{ url_for('create_employee_profile') }}">Edit Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>        
+    <hr>
+    <form method="POST" action="{{ url_for('employee_dashboard') }}">
+        <input type="text" name="search" placeholder="Search for jobs...">
+        <input type="submit" value="Search">
+    </form>
+    <h3>Available Jobs</h3>
+    {% if jobs %}
+        <ul>
+            {% for job in jobs %}
+                <li>
+                    <strong>{{ job['job_title'] }}</strong> - Posted on {{ job['posted_date'] }}<br>
+                    <p>{{ job['job_description'] }}</p>
+                    <form method="POST" action="{{ url_for('apply', job_id=job['job_id']) }}">
+                        <input type="submit" value="Apply">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No jobs available at the moment.</p>
+    {% endif %}
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='employee_dashboard.css') }}">
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ session['username'] }}!</h2>
+    <nav>
+        <a href="{{ url_for('create_employee_profile') }}">Edit Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>        
+    <hr>
+    <form method="POST" action="{{ url_for('employee_dashboard') }}">
+        <input type="text" name="search" placeholder="Search for jobs...">
+        <input type="submit" value="Search">
+    </form>
+    <h3>Available Jobs</h3>
+    {% if jobs %}
+        <ul>
+            {% for job in jobs %}
+                <li>
+                    <strong>{{ job['job_title'] }}</strong> - Posted on {{ job['posted_date'] }}<br>
+                    <p>{{ job['job_description'] }}</p>
+                    <form method="POST" action="{{ url_for('apply', job_id=job['job_id']) }}">
+                        <input type="submit" value="Apply">
+                    </form>                 
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No jobs available at the moment.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Applications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='application.css') }}">
+</head>
+<body>
+    <h1>Job Applications for Job #{{ job_id }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Applicant Name</th>
+                <th>Email</th>
+                <th>Score</th>
+                <th>Resume</th>
+                <th>Application Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+                <tr>
+                    <td>{{ application.name }}</td>
+                    <td>{{ application.contact_email }}</td>
+                    <td>{{ application.score }}</td>
+                    <td><a href="{{ url_for('view_resume', resume_path='static/uploads/' + (application['resume_path'] if application['resume_path'] else 'default_resume.pdf')) }}" target="_blank">View Resume</a></td>
+                    <td>{{ application.application_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('employer_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
